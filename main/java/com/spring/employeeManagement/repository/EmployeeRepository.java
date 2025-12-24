@@ -9,7 +9,7 @@ public interface EmployeeRepository {
 
     List<Employee> findAll();
     Employee findById(Long id);
-    Optional<Employee> findByEmail(String email);
+    List<Employee> findByEmail(String email);
     Employee save(Employee employee);
     void deleteById(Long id);
 }

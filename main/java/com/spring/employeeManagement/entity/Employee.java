@@ -9,8 +9,8 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "employee_details")
-@XmlRootElement
+@Table(name = "employees")
+//@XmlRootElement
 public class Employee {
 
     @Id

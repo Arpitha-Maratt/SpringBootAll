@@ -3,11 +3,11 @@ package com.spring.employeeManagement.service;
 import com.spring.employeeManagement.entity.Employee;
 import com.spring.employeeManagement.exception.ResourceNotFoundException;
 import com.spring.employeeManagement.repository.EmployeeRepository;
-import com.spring.employeeManagement.repository.EmployeeRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
@@ -27,8 +27,14 @@ public class EmployeeService {
         return employee;
     }
 
-    public Employee getEmployeeByEmail(String email){
-        return employeeRepository.findByEmail(email).orElseThrow(()-> new ResourceNotFoundException(("Employee is not available in this email id")));
+
+    public Employee getEmployeeByEmail(String email) {
+        List<Employee> employees = employeeRepository.findByEmail(email);
+        return employees.stream()
+                .findFirst()
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Employee not found with email: " + email
+                ));
     }
 
     public Employee saveEmployee(Employee employee) {
@@ -38,7 +44,9 @@ public class EmployeeService {
     public void deleteEmployee(Long id) {
         Employee employee = employeeRepository.findById(id);
         if (employee == null) {
-            throw new ResourceNotFoundException("Employee not found with id: " + id);
+            throw new ResourceNotFoundException(
+                    "Employee not found with id",
+                    id);
         }
         employeeRepository.deleteById(id);
     }
@@ -47,7 +55,9 @@ public class EmployeeService {
     public Employee updateEmployee(Long id, Employee employee) {
         Employee existing = employeeRepository.findById(id);
         if (existing == null) {
-            throw new ResourceNotFoundException("Employee not found with id: " + id);
+            throw new ResourceNotFoundException(
+                    "Employee not found with id",
+                    id);
         }
 
         existing.setName(employee.getName());

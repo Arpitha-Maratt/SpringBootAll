@@ -5,11 +5,11 @@ import com.spring.employeeManagement.service.EmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/employees")
@@ -21,40 +21,45 @@ public class EmployeeController {
 
     @GetMapping
     @Operation(summary = "Get all employees")
-    public List<Employee> getAllEmployees(){
-        return employeeService.getAllEmployee();
+    public ResponseEntity<List<Employee>> getAllEmployees(){
+    List<Employee> employees= employeeService.getAllEmployee();
+        return ResponseEntity.ok(employees);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     @Operation(summary = "Get employee by id")
-    public Employee getEmployeeById(@PathVariable  Long id){
-        return employeeService.getEmployeeById(id);
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable  Long id){
+        Employee employee = employeeService.getEmployeeById(id);
+        return ResponseEntity.ok(employee);
     }
 
-    @GetMapping("/email/{email}")
+    @GetMapping("/by-email")
     @Operation(summary = "Get employee by email")
-    public Employee getEmployeeByEmail(@PathVariable String email){
-        return employeeService.getEmployeeByEmail(email);
+    public ResponseEntity<Employee> getEmployeeByEmail(@RequestParam String email){
+        Employee employee= employeeService.getEmployeeByEmail(email);
+        return ResponseEntity.ok(employee);
     }
 
     @PostMapping
     @Operation(summary = "Create new employee")
-    public Employee createEmployee(@RequestBody Employee employee){
-        return employeeService.saveEmployee(employee);
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
+        Employee employee1=employeeService.saveEmployee(employee);
+        return ResponseEntity.ok(employee);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "update employee")
-    public Employee updateEmployee(@PathVariable Long id,
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id,
                                    @RequestBody Employee employee) {
-        return employeeService.updateEmployee(id, employee);
+        Employee updatedemployee= employeeService.updateEmployee(id, employee);
+        return ResponseEntity.ok(updatedemployee);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "delete an employee")
-    public ResponseEntity<String> deleteEmployee(@PathVariable Long id){
+    public ResponseEntity<Void> deleteEmployee(@PathVariable Long id){
         employeeService.deleteEmployee(id);
-        return ResponseEntity.ok("Deleted Successfully");
+        return ResponseEntity.noContent().build();
     }
 
   /* @GetMapping(value ="/{id}",
