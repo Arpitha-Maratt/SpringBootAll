@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Entity
 @Data
 @Table(name = "employees")
@@ -17,7 +19,7 @@ public class Employee {
     private Long id;
     private String name;
     private String department;
-    private Double salary;
+    private BigDecimal salary;
     private String email;
 
 }
