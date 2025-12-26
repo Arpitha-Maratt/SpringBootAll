@@ -1,4 +1,4 @@
-package com.prototype;
+package com.abstractFactory.prototype;
 
 public class Book {
     private int bookId;

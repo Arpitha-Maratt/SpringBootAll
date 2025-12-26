@@ -1,4 +1,4 @@
-package com.builderPhone;
+package com.abstractFactory.builderPhone;
 
 public class PhoneBuilder {
     private String os;

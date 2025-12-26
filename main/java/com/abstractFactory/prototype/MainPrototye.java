@@ -1,4 +1,4 @@
-package com.prototype;
+package com.abstractFactory.prototype;
 
 public class MainPrototye {
     public static void main(String[] args) throws CloneNotSupportedException {

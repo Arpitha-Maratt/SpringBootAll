@@ -1,7 +1,5 @@
 package com.singleton;
 
-import com.abstractFactory.MainFactory;
-
 public class MultithreadSingleton {
     private static MultithreadSingleton instance = null;
 

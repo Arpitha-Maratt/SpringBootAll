@@ -1,4 +1,4 @@
-package com.builderPhone;
+package com.abstractFactory.builderPhone;
 
 public class Shop {
     public static void main(String[] args) {

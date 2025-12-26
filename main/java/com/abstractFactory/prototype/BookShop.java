@@ -1,4 +1,4 @@
-package com.prototype;
+package com.abstractFactory.prototype;
 
 import java.util.ArrayList;
 import java.util.List;
