@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class EmployeeServiceTest {
         Employee employee = new Employee();
         employee.setId(105L);
         employee.setName("Sathvik");
-        employee.setSalary(45000.0);
+        employee.setSalary(BigDecimal.valueOf(45000));
         employee.setDepartment("software");
         employee.setEmail("sathvik@gmail.com");
 
@@ -131,7 +132,7 @@ public class EmployeeServiceTest {
         Employee employee = new Employee();
         employee.setId(105L);
         employee.setName(""); // invalid
-        employee.setSalary(45000.0);
+        employee.setSalary(BigDecimal.valueOf(45000.0));
         employee.setDepartment("software");
         employee.setEmail("sathvik@gmail.com");
 

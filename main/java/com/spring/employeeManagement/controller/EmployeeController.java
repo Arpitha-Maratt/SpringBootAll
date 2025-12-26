@@ -33,7 +33,7 @@ public class EmployeeController {
         return ResponseEntity.ok(employee);
     }
 
-    @GetMapping("/by-email")
+    @GetMapping()
     @Operation(summary = "Get employee by email")
     public ResponseEntity<Employee> getEmployeeByEmail(@RequestParam String email){
         Employee employee= employeeService.getEmployeeByEmail(email);
@@ -42,8 +42,8 @@ public class EmployeeController {
 
     @PostMapping
     @Operation(summary = "Create new employee")
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
-        Employee employee1=employeeService.saveEmployee(employee);
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employeeRequest){
+        Employee employee=employeeService.saveEmployee(employeeRequest);
         return ResponseEntity.ok(employee);
     }
 
