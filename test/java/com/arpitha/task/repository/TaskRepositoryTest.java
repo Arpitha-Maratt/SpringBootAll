@@ -75,9 +75,9 @@ public class TaskRepositoryTest {
 
     @Test
     void getAllTasksTest() {
-        Task t1 = new Task();
-        Task t2 = new Task();
-        when(mockJdbcTemplate.query(anyString(), any(RowMapper.class))).thenReturn(Arrays.asList(t1, t2));
+        Task firstTask = new Task();
+        Task secondTask = new Task();
+        when(mockJdbcTemplate.query(anyString(), any(RowMapper.class))).thenReturn(Arrays.asList(firstTask,secondTask));
 
         List<Task> tasks = repository.getAllTasks();
         assertEquals(2, tasks.size());

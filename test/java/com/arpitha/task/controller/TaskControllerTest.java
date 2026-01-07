@@ -94,12 +94,12 @@ class TaskControllerTest {
 
     @Test
     void getAllTasksTest() {
-        Task t1 = new Task();
-        t1.setId(1L);
-        Task t2 = new Task();
-        t2.setId(2L);
+        Task firstTask = new Task();
+        firstTask.setId(1L);
+        Task  secondTask = new Task();
+        secondTask.setId(2L);
 
-        when(mockService.getAllTasks()).thenReturn(Arrays.asList(t1, t2));
+        when(mockService.getAllTasks()).thenReturn(Arrays.asList(firstTask,secondTask));
 
         ResponseEntity<List<Task>> response = controller.getAllTasks();
 

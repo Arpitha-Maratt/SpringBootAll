@@ -63,12 +63,12 @@ class UserControllerTest {
 
     @Test
     void getAllUsersTest() {
-        User u1 = new User();
-        u1.setId(1L);
-        User u2 = new User();
-        u2.setId(2L);
+        User firstUser = new User();
+        firstUser.setId(1L);
+        User secondUser = new User();
+        secondUser.setId(2L);
 
-        when(mockService.getAllUsers()).thenReturn(Arrays.asList(u1, u2));
+        when(mockService.getAllUsers()).thenReturn(Arrays.asList(firstUser,secondUser));
 
         List<User> response = controller.getAllUsers();
 

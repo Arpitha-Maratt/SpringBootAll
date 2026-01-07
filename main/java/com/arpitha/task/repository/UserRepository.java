@@ -13,7 +13,6 @@ import java.util.List;
 @Repository
 public class UserRepository {
 
-//    private final JdbcTemplate jdbcTemplate = DBConnectionSingleton.getInstance();
 
     private final JdbcTemplate jdbcTemplate;
 

@@ -58,15 +58,15 @@ public class UserServiceTest {
 
     @Test
     void getAllUsersTest() {
-        User u1 = new User();
-        u1.setId(1L);
-        u1.setUserName("User1");
+        User firstUser = new User();
+        firstUser.setId(1L);
+        firstUser.setUserName("User1");
 
-        User u2 = new User();
-        u2.setId(2L);
-        u2.setUserName("User2");
+        User secondUser = new User();
+        secondUser.setId(2L);
+        secondUser.setUserName("User2");
 
-        when(mockRepository.getAllUsers()).thenReturn(Arrays.asList(u1, u2));
+        when(mockRepository.getAllUsers()).thenReturn(Arrays.asList(firstUser,secondUser));
 
         List<User> users = service.getAllUsers();
         assertEquals(2, users.size());

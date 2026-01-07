@@ -37,7 +37,7 @@ public class UserRepositoryTest {
     void createUserTest() {
         User user = new User();
         user.setUserName("Arpitha");
-        user.setEmail("arpitha@example.com");
+        user.setEmail("arpitha@ivoyant.com");
 
         // Mock JdbcTemplate update for varargs
         when(mockJdbcTemplate.update(anyString(), any(Object[].class))).thenReturn(1);
@@ -78,11 +78,11 @@ public class UserRepositoryTest {
 
     @Test
     void getAllUsersTest() {
-        User u1 = new User();
-        User u2 = new User();
+        User firstUser = new User();
+        User secondUser = new User();
 
         when(mockJdbcTemplate.query(anyString(), any(RowMapper.class)))
-                .thenReturn(Arrays.asList(u1, u2));
+                .thenReturn(Arrays.asList(firstUser,secondUser));
 
         List<User> users = repository.getAllUsers();
         assertEquals(2, users.size());
@@ -92,7 +92,7 @@ public class UserRepositoryTest {
     void updateUserTest() {
         User user = new User();
         user.setId(1L);
-        user.setUserName("ArpithaUpdated");
+        user.setUserName("Arpitha Updated");
 
         when(mockJdbcTemplate.update(anyString(), any(), any(), any())).thenReturn(1);
 

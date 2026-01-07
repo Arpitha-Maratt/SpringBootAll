@@ -19,21 +19,20 @@ public class TaskRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    // Constructor injection
     public TaskRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     public int createTask(Task task) {
         String sql = "INSERT INTO tasks (title, description, status, scheduled_time, user_id) VALUES (?, ?, ?, ?, ?)";
-        Timestamp ts = task.getScheduledTime() != null ? Timestamp.valueOf(task.getScheduledTime()) : null;
-        return jdbcTemplate.update(sql, task.getTitle(), task.getDescription(), task.getStatus(), ts, task.getUserId());
+        Timestamp timestamp = task.getScheduledTime() != null ? Timestamp.valueOf(task.getScheduledTime()) : null;
+        return jdbcTemplate.update(sql, task.getTitle(), task.getDescription(), task.getStatus(), timestamp, task.getUserId());
     }
 
     public int updateTask(Task task) {
         String sql = "UPDATE tasks SET title=?, description=?, status=?, scheduled_time=? WHERE id=?";
-        Timestamp ts = task.getScheduledTime() != null ? Timestamp.valueOf(task.getScheduledTime()) : null;
-        return jdbcTemplate.update(sql, task.getTitle(), task.getDescription(), task.getStatus(), ts, task.getId());
+        Timestamp timestamp = task.getScheduledTime() != null ? Timestamp.valueOf(task.getScheduledTime()) : null;
+        return jdbcTemplate.update(sql, task.getTitle(), task.getDescription(), task.getStatus(), timestamp, task.getId());
     }
 
     public int deleteTask(Long id) {
